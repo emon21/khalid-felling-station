@@ -42,25 +42,45 @@ Route::prefix('admin')->group(function () {
 
     # Website Controller #
     Route::get('/website', [WebsiteController::class, 'index'])->name('website.index');
+    // Route::post('/website', [WebsiteController::class, 'store'])->name('website.store');
 
-    Route::post('/website', [WebsiteController::class, 'store'])->name('website.store');
+    // Route::get('/website/edit', [WebsiteController::class, 'edit'])->name('website.edit');
 
-    Route::get('/website/edit/{id}', [WebsiteController::class, 'edit'])->name('website.edit');
-    Route::put('/website/update/{id}', [WebsiteController::class, 'update'])->name('website.update');
-    Route::delete('/website/delete/{id}', [WebsiteController::class, 'destroy'])->name('website.destroy');
+    // Route::get('/website-settings', [WebsiteController::class, 'edit'])->name('website-settings.edit');
+
+    //Route::put('/website/update/', [WebsiteController::class, 'update'])->name('website.update');
+
+    //  Route::put('/website/settings', [WebsiteController::class, 'SettingUpdate'])->name('settings.update');
+
+
+    // Website Settings Routes
+    Route::get('/website-settings', [WebsiteController::class, 'edit'])->name('website-settings');
+    Route::put('/website-settings', [WebsiteController::class, 'update'])->name('website-settings.update');
+
+    Route::post('/website-settings/reset', [WebsiteController::class, 'reset'])->name('website-settings.reset');
+    Route::delete('/website-settings/file', [WebsiteController::class, 'deleteFile'])->name('website-settings.delete-file');
 
     # page Route #
-    Route::resource('page',PageController::class);
+    Route::resource('page', PageController::class);
     // Route::get('page',[PageController::class,'index']);
     // Route::get('page/create',[PageController::class,'create']);
 
     # Service Route
-    Route::resource('service',ServiceController::class);
+    Route::resource('service', ServiceController::class);
     // Route::get('service',[ServiceController::class,'index']);
-
-
-
-
+    Route::get('test', [WebsiteController::class, 'test']);
 });
 
-require __DIR__.'/auth.php';
+route::get('test', function () {
+    // Directory আছে কি না check করুন
+    if (!is_dir('uploads/website/')) {
+        mkdir('uploads/website/', 0755, true);
+    }
+
+    // Writable কি না check করুন  
+    // if (!is_writable('uploads/website/')) {
+    //     throw new \Exception('Directory is not writable');
+    // }
+});
+
+require __DIR__ . '/auth.php';

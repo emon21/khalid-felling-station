@@ -17,20 +17,28 @@ class WebsiteSettingSeeder extends Seeder
         // website Setting
 
         WebsiteSetting::create([
+           
+             // basic info
             'site_name'         => 'East West Felling Station',
-            'site_logo'         => 'https://placehold.co/600x400/EEE/31343C?font=lora&text=Lora',
-            'site_favicon'      => 'favicon.ico',
-            'site_phone'        => '+880 1777 787 027',
+            'site_logo'         => 'https://placehold.co/600x400/EEE/31343C?font=lora&text=Logo',
             'site_email'        => 'info@eastwestfillingstation.com',
+            'site_phone'        => '+880 1777 787 027',
             'site_address'      => "Dhour Barebad Turag,Dhaka, Dhaka, Bangladesh",
+            'site_favicon'      => 'https://placehold.co/600x400/EEE/000?font=lora&text=Favicon',
+            'copy_right'        => '© 2025 Copyright East West Felling Station All Rights Reserved.',
+
+            // page seo
             'meta_title'        => 'My Company - Quality Products & Services',
-            'meta_description'  => 'My Company Ltd. provides top-notch products and services in Bangladesh.',
             'meta_keywords'     => 'company, services, products, Bangladesh',
+            'meta_description'  => 'My Company Ltd. provides top-notch products and services in Bangladesh.',
+
+            // social media
             'facebook_url'      => 'https://facebook.com/mycompany',
             'twitter_url'       => 'https://twitter.com/mycompany',
             'instagram_url'     => 'https://instagram.com/mycompany',
             'linkedin_url'      => 'https://linkedin.com/company/mycompany',
-            'copy_right'        => '© 2025 Copyright East West Felling Station All Rights Reserved.',
+           
+
         ]);
     }
 }

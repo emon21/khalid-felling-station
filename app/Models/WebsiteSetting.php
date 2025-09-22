@@ -32,4 +32,6 @@ class WebsiteSetting extends Model
         // Footer Info
         'copy_right',
     ];
+
+    
 }

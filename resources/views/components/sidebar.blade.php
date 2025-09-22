@@ -96,8 +96,9 @@
 
             <!-- Settings -->
             <li>
-                <a href="{{ route('website.index') }}"
-                    class="flex items-center gap-3 px-6 py-3 text-gray-700 transition border-b border-gray-200 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 dark:border-gray-700">
+                <a href="{{ route('website-settings') }}"
+                    class="flex items-center gap-3 px-6 py-3 text-gray-700 transition border-b border-gray-200 {{ request()->routeIs('website-settings') 
+                            ? 'bg-gray-200  text-gray-900 font-semibold' : 'text-gray-700  hover:bg-gray-200 ' }} hover:bg-gray-200 ">
                     ⚙️
                     <span>WebSite Settings</span>
                 </a>
@@ -105,10 +106,10 @@
              <!-- Page Settings -->
             <li>
                 <a href="{{ route('page.index') }}"
-                    class="flex items-center gap-3 px-6 py-3 transition border-b border-gray-200 dark:border-gray-700
+                    class="flex items-center gap-3 px-6 py-3 transition border-b border-gray-200 
                         {{ request()->routeIs('page.index') 
-                            ? 'bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white font-semibold' 
-                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700' }}">
+                            ? 'bg-gray-200  text-gray-900 dark:text-white font-semibold' 
+                            : 'text-gray-700  hover:bg-gray-200 ' }}">
                     <span class="text-lg">📄</span>
                     <span>Page Settings</span>
                 </a>
