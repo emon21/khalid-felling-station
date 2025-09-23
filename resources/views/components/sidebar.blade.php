@@ -104,11 +104,11 @@
             </li>
             <!-- Slider -->
             <li>
-          <a href="{{ route('slider.index') }}"
-            class="flex items-center px-6 py-3 text-gray-700 transition rounded-lg  hover:bg-gray-100 {{ request()->routeIs('slider.index') ? 'bg-gray-200  text-gray-900 font-semibold' : 'text-gray-700' }} hover:bg-gray-200 ">
-            ⚙️ Slider
-          </a>
-        </li>
+                <a href="{{ route('slider.index') }}"
+                    class="flex items-center px-6 py-3 text-gray-700 transition rounded-lg  hover:bg-gray-100 {{ request()->routeIs('slider.index') ? 'bg-gray-200  text-gray-900 font-semibold' : 'text-gray-700' }} hover:bg-gray-200 ">
+                    ⚙️ Slider
+                </a>
+            </li>
 
             <!-- Website Settings -->
             <li>
@@ -131,6 +131,15 @@
                     <span>Page Settings</span>
                 </a>
             </li>
+            <hr>
+            <!-- Reset Button -->
+            <form action="{{ route('website-settings.reset') }}" method="POST">
+                @csrf
+                <button onclick="ResetData(event)" type="submit"
+                    class="px-4 py-2 my-8 mx-10 text-white rounded-lg bg-red-800 bg-gradient-to-r from-green-600 to-green-800 hover:bg-green-700  transition-all duration-300 hover:scale-110">
+                    <i class="mr-2 fas fa-undo"></i>Reset to Default
+                </button>
+            </form>
         </ul>
     </nav>
 
