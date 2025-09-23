@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             PageSeeder::class,
             AboutSeeder::class,
+            OurValueSeeder::class,
         ]);
     }
 }

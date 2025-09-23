@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\PageController;
 use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\WebsiteController;
+use App\Http\Controllers\admin\OurValueController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -68,8 +69,9 @@ Route::prefix('admin')->group(function () {
 
     # Service Route #
     Route::resource('service', ServiceController::class);
-    // Route::get('service', [ServiceController::class,'index'])->name('service');
-    // Route::put('service', [ServiceController::class,'update'])->name('service.update');
+    
+    # Our Value Route #
+    Route::resource('our-value', OurValueController::class);
     
     # About Route #
     Route::get('about', [AboutController::class,'index'])->name('about');

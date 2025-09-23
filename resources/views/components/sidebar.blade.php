@@ -70,8 +70,9 @@
             <!-- About -->
             <li>
                 <a href="{{ route('about') }}"
-                   class="flex items-center gap-3 px-6 py-3 text-gray-700 transition border-b border-gray-200 {{ request()->routeIs('about') 
-                            ? 'bg-gray-200  text-gray-900 font-semibold' : 'text-gray-700  hover:bg-gray-200 ' }} hover:bg-gray-200 ">
+                    class="flex items-center gap-3 px-6 py-3 text-gray-700 transition border-b border-gray-200 {{ request()->routeIs('about')
+                        ? 'bg-gray-200  text-gray-900 font-semibold'
+                        : 'text-gray-700  hover:bg-gray-200 ' }} hover:bg-gray-200 ">
                     ℹ️
                     <span>About</span>
                 </a>
@@ -83,6 +84,13 @@
                     class="flex items-center gap-3 px-6 py-3 text-gray-700 transition border-b border-gray-200 {{ request()->routeIs('service.index') ? 'bg-gray-200  text-gray-900 font-semibold' : 'text-gray-700' }} hover:bg-gray-200 ">
                     💼
                     <span>Services</span>
+                </a>
+            </li>
+            <!-- our-value -->
+            <li>
+                <a href="{{ route('our-value.index') }}"
+                    class="flex items-center gap-3 px-6 py-3 text-gray-700 transition border-b border-gray-200 {{ request()->routeIs('our-value.index') ? 'bg-gray-200  text-gray-900 font-semibold' : 'text-gray-700' }} hover:bg-gray-200 ">
+                    📦 <span>Our value</span>
                 </a>
             </li>
 
@@ -98,18 +106,19 @@
             <!-- Settings -->
             <li>
                 <a href="{{ route('website-settings') }}"
-                    class="flex items-center gap-3 px-6 py-3 text-gray-700 transition border-b border-gray-200 {{ request()->routeIs('website-settings') 
-                            ? 'bg-gray-200  text-gray-900 font-semibold' : 'text-gray-700  hover:bg-gray-200 ' }} hover:bg-gray-200 ">
+                    class="flex items-center gap-3 px-6 py-3 text-gray-700 transition border-b border-gray-200 {{ request()->routeIs('website-settings')
+                        ? 'bg-gray-200  text-gray-900 font-semibold'
+                        : 'text-gray-700  hover:bg-gray-200 ' }} hover:bg-gray-200 ">
                     ⚙️
                     <span>WebSite Settings</span>
                 </a>
             </li>
-             <!-- Page Settings -->
+            <!-- Page Settings -->
             <li>
                 <a href="{{ route('page.index') }}"
                     class="flex items-center gap-3 px-6 py-3 transition border-b border-gray-200 
-                        {{ request()->routeIs('page.index') 
-                            ? 'bg-gray-200  text-gray-900 dark:text-white font-semibold' 
+                        {{ request()->routeIs('page.index')
+                            ? 'bg-gray-200  text-gray-900 dark:text-white font-semibold'
                             : 'text-gray-700  hover:bg-gray-200 ' }}">
                     <span class="text-lg">📄</span>
                     <span>Page Settings</span>
