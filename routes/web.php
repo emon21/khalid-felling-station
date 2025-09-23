@@ -66,9 +66,12 @@ Route::prefix('admin')->group(function () {
     // Route::get('page',[PageController::class,'index']);
     // Route::get('page/create',[PageController::class,'create']);
 
-    # Service Route
+    # Service Route #
     Route::resource('service', ServiceController::class);
-
+    // Route::get('service', [ServiceController::class,'index'])->name('service');
+    // Route::put('service', [ServiceController::class,'update'])->name('service.update');
+    
+    # About Route #
     Route::get('about', [AboutController::class,'index'])->name('about');
     Route::put('about', [AboutController::class,'update'])->name('about.update');
     // Route::get('service',[ServiceController::class,'index']);

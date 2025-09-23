@@ -29,15 +29,15 @@ class ServiceSeeder extends Seeder
 
         $services = [
             [
-                'title' => 'Our diesel',
+                'service_name' => 'Our diesel',
                 'service_picture' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQMC15CJIPwrl7mCLqREsmSpLqPyiVFItzJqHq-fAkjLoYjS12yTELgHngNXGV936OxiQ&usqp=CAU',
             ],
             [
-                'title' => 'Our patrol',
+                'service_name' => 'Our patrol',
                 'service_picture' => 'https://cstoredecisions.com/wp-content/uploads/2020/03/unbranded-c-store-exterior.jpg',
             ],
             [
-                'title' => 'Our octal',
+                'service_name' => 'Our octal',
                 'service_picture' => 'https://www.lumina-intelligence.com/wp-content/uploads/2020/06/forecourt-retail-trends-growth-statistics-thegem-blog-default.png',
             ],
         ];

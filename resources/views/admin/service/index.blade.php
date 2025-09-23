@@ -1,82 +1,161 @@
 <x-admin-layout>
     @section('content')
-        <h1 class="mb-6 text-2xl font-bold text-gray-800">ℹ️ About Information :</h1>
+        <h1 class="mb-6 text-2xl font-bold text-gray-800"> 💼 Service Settings</h1>
 
         <div class="mb-6">
             <div class="overflow-hidden bg-white rounded-lg shadow-lg">
                 <!-- Card Header -->
-                <div class="flex items-center justify-between px-3 py-3 text-gray-600 bg-white border-b-2 border-blue-500">
-                    <h2 class="text-lg font-semibold ">ℹ️ Edit About</h2>
+                <div class="flex items-center justify-between px-3 py-3 text-gray-600 bg-white border-b border-gray-300">
+                    <h2 class="text-lg font-semibold ">All Service</h2>
+                    <button id="openModalBtn"
+                        class="px-4 py-2 text-sm text-white bg-green-500 rounded hover:bg-green-600">+ Add New Service</button>
                 </div>
-
                 <!-- Card Body -->
-                <div class="p-6 bg-white rounded-lg">
-                    <form action="{{ route('about.update') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-                        <div class="mb-4">
-                            <label for="about_title" class="block mb-2 font-medium text-gray-700">Service Name</label>
-                            <input type="text" name="about_title" id="about_title"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                value="{{ $about->title }}">
-                        </div>
+                <div class="bg-white rounded-lg">
+                    <table class="min-w-full bg-white">
+                        <!-- Table Header -->
+                        <thead class="text-gray-600 ">
+                            <tr>
+                                <th
+                                    class="px-4 py-2 text-sm font-semibold tracking-wider text-left uppercase border border-gray-300">
+                                    ID</th>
+                                <th
+                                    class="px-6 py-3 text-sm font-semibold tracking-wider text-left uppercase border border-gray-300">
+                                    Service Title</th>
+                                <th
+                                    class="px-6 py-3 text-sm font-semibold tracking-wider text-left uppercase border border-gray-300">
+                                    Service Picture</th>
+                                   
+                                <th
+                                    class="px-6 py-3 text-sm font-semibold tracking-wider text-left uppercase border border-gray-300">
+                                    Action</th>
+                            </tr>
+                        </thead>
+                        <!-- Table Body -->
+                        <tbody class="bg-white">
+                            @foreach ($services as $service)
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 border border-gray-200">{{ $loop->iteration }}</td>
+                                    <td class="px-6 py-4 border border-gray-200">{{ $service->service_name }}</td>
+                                    <td class="px-6 py-4 border border-gray-200">
+                                       <img src="{{ asset($service->service_picture ) }}" alt="" class="w-20 h-10">
+                                    </td>
+                                    
+                                    <td class="flex gap-2 px-6 py-4 border border-gray-200">
+                                        <a href="{{ route('service.edit', $service->id) }}"
+                                            class="px-4 py-2 text-sm text-white bg-green-500 rounded-lg hover:bg-green-600">Edit</a>
 
-                        <!-- Site Favicon upload -->
-                        <div class="bg-white rounded-lg">
-                            <div class="flex items-start justify-between gap-3">
-                                <!-- About Description -->
-                                <div class="w-9/12">
-                                    <div class="mb-4">
-                                        <label for="about_description" class="block mb-2 font-medium text-gray-700">
-                                            About Description
-                                        </label>
-                                        <textarea name="about_description" id="about_description" rows="10" cols="30"
-                                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            value="{{ $about->short_description }}">{{ $about->short_description }}</textarea>
-                                    </div>
-                                </div>
+                                        <form action="{{ route('service.destroy', $service->id) }}" method="POST" >
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" onclick="ConfirmDelete(event)" class="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600">
+                                                Delete
+                                            </button>
+                                        </form>
 
-                                <!-- About Picture -->
-                                <div class="w-3/12">
-                                    <div class="mb-4">
-                                        <label for="about_picture" class="block mb-2 font-medium text-gray-700">About Picture</label>
-                                        <input type="file" id="about_picture" name="about_picture"
-                                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            accept="image/*" onchange="PreviewImage()">
-                                    </div>
+                                        {{-- <form id="delete-form-{{ $page->id }}"
+                                            action="{{ route('page.destroy', $page->id) }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
 
-                                    <!-- Image Preview - Site Favicon এর নিচে -->
-                                        <div
-                                            class="w-auto h-48 border-2 border-gray-300 border-dashed rounded-lg bg-gray-50 hover:bg-gray-100 cursor-pointer overflow-hidden">
-                                            <img src="{{ asset($about->about_picture ?? 'https://placehold.co/600x400/EEE/31343C?font=lora&text=Picture') }}"
-                                                class="w-full h-full object-cover img-preview" alt="Favicon Preview"
-                                                id="favicon-preview">
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button type="submit"
-                            class="px-4 py-2 font-semibold text-white transition duration-200 bg-blue-500 rounded-md hover:bg-blue-600">Update</button>
-                    </form>
+                                        <button onclick="deleteConfirmation({{ $page->id }})"
+                                            class="px-4 py-2 text-white bg-red-600 rounded-lg hover:bg-red-700">
+                                            Delete
+                                        </button> --}}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Card Footer -->
+                <div class="flex justify-end px-6 py-4 space-x-2">
+                    <!-- Pagination -->
+                    {{-- <div class="flex justify-end">
+                        {{ $services->links() }}
+                    </div> --}}
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <div id="modal" class="fixed inset-0 flex items-center justify-center hidden bg-black bg-opacity-50"
+            aria-hidden="true">
+            <div id="modalContent"
+                class="w-full max-w-md p-6 transition-all duration-300 transform scale-75 bg-white rounded-lg opacity-0"
+                class="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
+
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-semibold text-gray-800">Add Information</h2>
+                    <button id="closeModalBtn" class="px-4 py-2 text-red-500 transition rounded "
+                        aria-label="Close modal">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <form action="{{ route('service.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-4">
+                        <label for="service_name" class="block mb-2 font-medium text-gray-700">Page Title</label>
+                        <input type="text" name="service_name" id="service_name"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            value="{{ old('service_name') }}">
+                    </div>
+                    <div class="mb-4">
+                        <label for="service_picture" class="block mb-2 font-medium text-gray-700">Service Picture</label>
+                        <input type="file" name="service_picture" id="service_picture"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            value="{{ old('service_picture') }}">
+                    </div>
+                  
+                    <button type="submit"
+                        class="px-4 py-2 font-semibold text-white transition duration-200 bg-green-500 rounded-md hover:bg-green-600">Save</button>
+                </form>
+            </div>
+        </div>
     @endsection
+
     @push('script')
         <script>
-            // Image upload & Preview
-            function PreviewImage() {
-                const image = document.querySelector('#about_picture');
-                const imgPreview = document.querySelector('.img-preview');
-                imgPreview.style.display = 'block';
+            // Modal functionality
+            const openModalBtn = document.getElementById('openModalBtn');
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+            const closeModalBtn = document.getElementById('closeModalBtn');
 
-                const reader = new FileReader();
-                reader.readAsDataURL(image.files[0]);
-                reader.onload = function(reader) {
-                    imgPreview.src = reader.target.result;
+            // Open modal with animation
+            openModalBtn.addEventListener('click', () => {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modalContent.classList.remove('scale-75', 'opacity-0');
+                    modalContent.classList.add('scale-100', 'opacity-100');
+                }, 10); // Small delay to trigger transition
+            });
+
+            // Close modal with animation
+            closeModalBtn.addEventListener('click', () => {
+                modalContent.classList.add('scale-75', 'opacity-0');
+                modalContent.classList.remove('scale-100', 'opacity-100');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300); // Match the transition duration
+            });
+
+            // Close modal when clicking outside
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modalContent.classList.add('scale-75', 'opacity-0');
+                    modalContent.classList.remove('scale-100', 'opacity-100');
+                    setTimeout(() => {
+                        modal.classList.add('hidden');
+                    }, 300);
                 }
-            }
+            });
+            
         </script>
     @endpush
 </x-admin-layout>

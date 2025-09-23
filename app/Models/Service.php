@@ -8,5 +8,5 @@ class Service extends Model
 {
     //
 
-    protected $fillable = ['title','service_picture'];
+    protected $fillable = ['service_name', 'service_picture'];
 }
