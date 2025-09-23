@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\admin\PageController;
+use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\WebsiteController;
 
@@ -67,6 +68,9 @@ Route::prefix('admin')->group(function () {
 
     # Service Route
     Route::resource('service', ServiceController::class);
+
+    Route::get('about', [AboutController::class,'index'])->name('about');
+    Route::put('about', [AboutController::class,'update'])->name('about.update');
     // Route::get('service',[ServiceController::class,'index']);
     Route::get('test', [WebsiteController::class, 'test']);
 });

@@ -25,7 +25,7 @@ class ServiceSeeder extends Seeder
            
         // ]);
 
-        # Service 
+        # Services 
 
         $services = [
             [
