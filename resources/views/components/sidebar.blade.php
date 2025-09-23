@@ -102,15 +102,22 @@
                     <span>Contact</span>
                 </a>
             </li>
+            <!-- Slider -->
+            <li>
+          <a href="{{ route('slider.index') }}"
+            class="flex items-center px-6 py-3 text-gray-700 transition rounded-lg  hover:bg-gray-100 {{ request()->routeIs('slider.index') ? 'bg-gray-200  text-gray-900 font-semibold' : 'text-gray-700' }} hover:bg-gray-200 ">
+            ⚙️ Slider
+          </a>
+        </li>
 
-            <!-- Settings -->
+            <!-- Website Settings -->
             <li>
                 <a href="{{ route('website-settings') }}"
                     class="flex items-center gap-3 px-6 py-3 text-gray-700 transition border-b border-gray-200 {{ request()->routeIs('website-settings')
                         ? 'bg-gray-200  text-gray-900 font-semibold'
                         : 'text-gray-700  hover:bg-gray-200 ' }} hover:bg-gray-200 ">
                     ⚙️
-                    <span>WebSite Settings</span>
+                    <span>Website Settings</span>
                 </a>
             </li>
             <!-- Page Settings -->

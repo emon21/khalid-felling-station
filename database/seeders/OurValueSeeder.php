@@ -33,13 +33,41 @@ class OurValueSeeder extends Seeder
             ]
         ];
 
+
+        // 1️⃣ Delete all table data
+        // OurValue::truncate();
+
+        // 2️⃣ Clear uploads/values folder but keep folder
+        // FileUpload::ClearFolder('uploads/values');
+
+        # or more code #
+
         # Delete all data
         OurValue::truncate();
 
+        // Folder path
+        // $folder = public_path('uploads/values'); // public/uploads/values
+
+        // // Folder exist check
+        // if (File::exists($folder)) {
+        //     File::deleteDirectory($folder); // পুরো folder delete
+        // }
+
         # delete image folder path
-        if (File::exists('uploads/values')) {
-            File::deleteDirectory('uploads/values');
+        // if (File::exists('uploads/values')) {
+        //     File::deleteDirectory('uploads/values');
+        // }
+
+        // Delete image folder
+        if (File::exists(public_path('uploads/values'))) {
+            File::deleteDirectory(public_path('uploads/values'));
         }
+
+        // Optional: recreate folder
+        File::makeDirectory(public_path('uploads/values'), 0755, true);
+
+        // 2️⃣ Delete old images folder
+        // FileUpload::DeleteFolder('uploads/values');
 
         # Insert data
         foreach ($our_values as $our_value) {

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\admin\PageController;
 use App\Http\Controllers\admin\AboutController;
+use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\WebsiteController;
 use App\Http\Controllers\admin\OurValueController;
@@ -72,6 +73,9 @@ Route::prefix('admin')->group(function () {
     
     # Our Value Route #
     Route::resource('our-value', OurValueController::class);
+
+    # Slider Route #
+    Route::resource('slider', SliderController::class);
     
     # About Route #
     Route::get('about', [AboutController::class,'index'])->name('about');

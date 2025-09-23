@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             PageSeeder::class,
             AboutSeeder::class,
             OurValueSeeder::class,
+            SliderSeeder::class,
         ]);
     }
 }
