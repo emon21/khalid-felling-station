@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\ContactUS;
 use App\Helpers\FileUpload;
 use Illuminate\Http\Request;
 use App\Helpers\CustomMessage;
@@ -308,4 +309,23 @@ class WebsiteController extends Controller
             ]);
         }
     }
+
+    /*
+    * All Contact show
+    * Fronted send Message
+    * Manage send Message
+    * User send Message
+    **/
+    public function contact(){
+
+        $contacts = ContactUS::latest()->get();
+        return view('admin/contact', compact('contacts'));
+    }
+    
+    public function ContactDelete(ContactUS $contact){
+
+        $contact->delete();
+        return redirect()->route('contact')->with('alert',CustomMessage::error('Delete Message','Message Has Been Deleted Successfully!!'));
+    }
+
 }

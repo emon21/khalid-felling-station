@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\ContactUS;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\admin\PageController;
@@ -30,6 +32,25 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+# Contact Route #
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::post('/contact', function (Request $request) {
+
+    $request->validate([
+        'name'    => 'required|string|max:100',
+        'email'   => 'required|email',
+        'subject' => 'required|string|max:150',
+        'message' => 'required|string|min:10',
+    ]);
+
+    ContactUS::create($request->only('name', 'email', 'subject', 'message'));
+    return back()->with('success', 'Message sent successfully!');
+
 });
 
 # Route Group in Admin #
@@ -63,6 +84,8 @@ Route::prefix('admin')->group(function () {
     Route::post('/website-settings/reset', [WebsiteController::class, 'reset'])->name('website-settings.reset');
     Route::delete('/website-settings/file', [WebsiteController::class, 'deleteFile'])->name('website-settings.delete-file');
 
+
+
     # page Route #
     Route::resource('page', PageController::class);
     // Route::get('page',[PageController::class,'index']);
@@ -81,7 +104,8 @@ Route::prefix('admin')->group(function () {
     Route::get('about', [AboutController::class,'index'])->name('about');
     Route::put('about', [AboutController::class,'update'])->name('about.update');
     // Route::get('service',[ServiceController::class,'index']);
-    Route::get('test', [WebsiteController::class, 'test']);
+    Route::get('contact', [WebsiteController::class, 'contact'])->name('contact');
+    Route::delete('contact-delete/{contact}', [WebsiteController::class, 'ContactDelete'])->name('contact-delete');
 });
 
 route::get('test', function () {

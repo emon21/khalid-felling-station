@@ -96,8 +96,8 @@
 
             <!-- Contact -->
             <li>
-                <a href="#"
-                    class="flex items-center gap-3 px-6 py-3 text-gray-700 transition dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">
+                <a href="{{ route('contact') }}"
+                    class="flex items-center gap-3 px-6 py-3 text-gray-700 transition hover:bg-gray-200 {{ request()->routeIs('contact') ? 'bg-gray-200  text-gray-900 font-semibold' : 'text-gray-700' }} ">
                     📞
                     <span>Contact</span>
                 </a>
@@ -136,7 +136,7 @@
             <form action="{{ route('website-settings.reset') }}" method="POST">
                 @csrf
                 <button onclick="ResetData(event)" type="submit"
-                    class="px-4 py-2 my-8 mx-10 text-white rounded-lg bg-red-800 bg-gradient-to-r from-green-600 to-green-800 hover:bg-green-700  transition-all duration-300 hover:scale-110">
+                    class="px-4 py-2 mx-10 my-8 text-white transition-all duration-300 bg-red-800 rounded-lg bg-gradient-to-r from-green-600 to-green-800 hover:bg-green-700 hover:scale-110">
                     <i class="mr-2 fas fa-undo"></i>Reset to Default
                 </button>
             </form>
